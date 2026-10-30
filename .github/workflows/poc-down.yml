@@ -1,0 +1,14 @@
+name: POC Down Control
+on:
+  workflow_run:
+    workflows: ["POC Upstream Push"]
+    types: [completed]
+    branches: [main]
+permissions: {}
+jobs:
+  d:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "control fired: wr_event=${{ github.event.workflow_run.event }} wr_head_branch=${{ github.event.workflow_run.head_branch }}"
