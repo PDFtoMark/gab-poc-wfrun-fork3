@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["Release Workflow"]
     types: [completed]
-    branches: [main]
+    branches: [development]
 permissions: {}
 jobs:
   probe:
