@@ -1,0 +1,9 @@
+name: POC Upstream Push
+on:
+  push:
+    branches: [main]
+jobs:
+  ok:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "push upstream ok"
