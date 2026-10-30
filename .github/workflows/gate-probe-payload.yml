@@ -1,0 +1,22 @@
+name: Gate Probe Payload Dump
+
+on:
+  workflow_run:
+    workflows: ["Unit Tests"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "PAYLOAD_DUMP_START"
+          echo "head_repo=${{ github.event.workflow_run.head_repository.full_name }}"
+          echo "base_repo=${{ github.repository }}"
+          echo "head_branch=${{ github.event.workflow_run.head_branch }}"
+          echo "head_sha=${{ github.event.workflow_run.head_sha }}"
+          echo "event=${{ github.event.workflow_run.event }}"
+          echo "gate_equals=${{ github.event.workflow_run.head_repository.full_name == github.repository }}"
