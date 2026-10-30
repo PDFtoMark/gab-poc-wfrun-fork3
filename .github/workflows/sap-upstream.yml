@@ -1,0 +1,10 @@
+name: sap-release
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - run: echo "upstream sap-release pull_request run ok"
