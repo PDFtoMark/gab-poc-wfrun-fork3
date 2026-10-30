@@ -38,3 +38,10 @@ jobs:
           echo "upstream_head_branch=${{ github.event.workflow_run.head_branch }}"
           echo "upstream_head_repo=${{ github.event.workflow_run.head_repository.full_name }}"
           echo "upstream_head_sha=${{ github.event.workflow_run.head_sha }}"
+      - name: dump workflow_run pull_requests
+        env:
+          WRPR: ${{ toJSON(github.event.workflow_run.pull_requests) }}
+          WREVENT: ${{ github.event.workflow_run.event }}
+        run: |
+          echo "UPSTREAM_EVENT=$WREVENT"
+          echo "WR_PULL_REQUESTS=$WRPR"
