@@ -1,0 +1,10 @@
+name: sap-ci
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - run: echo "sap-ci pull_request run ok base=$GITHUB_BASE_REF head=$GITHUB_HEAD_REF"
