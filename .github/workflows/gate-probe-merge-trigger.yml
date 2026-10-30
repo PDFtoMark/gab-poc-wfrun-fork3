@@ -1,0 +1,23 @@
+name: Gate Probe Merge Trigger
+
+on:
+  workflow_run:
+    workflows: ["Unit Tests"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  merge-trigger:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository }}
+    steps:
+      - run: |
+          echo "GATE_PASSED_MERGE_TRIGGER"
+          echo "head_branch=${{ github.event.workflow_run.head_branch }}"
+          echo "head_repo=${{ github.event.workflow_run.head_repository.full_name }}"
+          echo "base_repo=${{ github.repository }}"
+          echo "upstream_event=${{ github.event.workflow_run.event }}"
